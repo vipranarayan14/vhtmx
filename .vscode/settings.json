@@ -1,5 +1,5 @@
 {
     "files.associations": {
-        "*.htmx": "html"
+        "*.vhtmx": "html"
     }
 }
