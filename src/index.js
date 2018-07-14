@@ -4,6 +4,8 @@ const fs = require('fs');
 const mkdirp = require('mkdirp');
 const processors = require('./processors');
 
+const defaultConfig = require('./default-config');
+
 const parseDOM = data => new JSDOM(data);
 
 const processDocument = dom => {
@@ -17,15 +19,6 @@ const processDocument = dom => {
   });
 
   return dom;
-
-};
-
-const defaultConfig = {
-
-  distExt: '.html',
-  distRoot: './dist',
-  srcExt: '.htmx',
-  srcRoot: './src'
 
 };
 
@@ -60,7 +53,7 @@ const writeOutput = (path, data) => new Promise((resolve, reject) => {
 
       if (fsWriteErr) {
 
-        reject(fsWriteErr)
+        reject(fsWriteErr);
 
       }
 

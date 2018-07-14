@@ -1,4 +1,4 @@
-export const defaultConfig = {
+const defaultConfig = {
 
   distExt: '.html',
   distRoot: './dist',
@@ -6,3 +6,5 @@ export const defaultConfig = {
   srcRoot: './src'
 
 };
+
+module.exports = defaultConfig;
