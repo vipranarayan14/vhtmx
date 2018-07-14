@@ -1,9 +1,9 @@
 const defaultConfig = {
 
   distExt: '.html',
-  distRoot: './dist',
-  srcExt: '.htmx',
-  srcRoot: './src'
+  distRoot: './',
+  srcExt: '.vhtmx',
+  srcRoot: './'
 
 };
 
