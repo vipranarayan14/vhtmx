@@ -1,15 +1,22 @@
 const { parseDOM } = require('./parse-dom');
 const { processDocument } = require('./process-document');
-const { writeOutput } = require('./write-output');
 
-const processData = ({ data, filePath }) => {
+const processData = processors => data =>
 
-  const dom = parseDOM(data);
+  new Promise((resolve, reject) => {
 
-  const doc = processDocument(dom).window.document.body.innerHTML;
+    const dom = parseDOM(data);
 
-  return writeOutput(filePath, doc);
+    const doc = processDocument(dom, processors).window.document.body.innerHTML;
 
-};
+    if (!doc) {
+
+      reject('File(s) could not be processed');
+
+    }
+
+    resolve(doc);
+
+  });
 
 module.exports = { processData };

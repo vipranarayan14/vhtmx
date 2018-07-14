@@ -1,6 +1,4 @@
-const { processors } = require('./processors');
-
-const processDocument = dom => {
+const processDocument = (dom, processors) => {
 
   processors.forEach(processor => {
 

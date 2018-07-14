@@ -1,12 +1,11 @@
-const { defaultConfig } = require('./default-config');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 
-const getOutputPath = inputFilePath => {
+const getOutputPath = (inputFilePath, config) => {
 
   const outputFilePath = inputFilePath
-    .replace(defaultConfig.srcRoot, defaultConfig.distRoot)
-    .replace(defaultConfig.srcExt, defaultConfig.distExt);
+    .replace(config.srcRoot, config.distRoot)
+    .replace(config.srcExt, config.distExt);
 
   const outputDirPath = outputFilePath.match(/(.+)\/(?:.(?!\/))+/)[1];
 
@@ -17,9 +16,7 @@ const getOutputPath = inputFilePath => {
 
 };
 
-const writeOutput = (path, data) => new Promise((resolve, reject) => {
-
-  const { outputDirPath, outputFilePath } = getOutputPath(path);
+const makeDirs = outputDirPath => new Promise((resolve, reject) =>
 
   mkdirp(outputDirPath, mkdirpErr => {
 
@@ -28,6 +25,16 @@ const writeOutput = (path, data) => new Promise((resolve, reject) => {
       reject(mkdirpErr);
 
     }
+
+    resolve();
+
+  })
+
+);
+
+const writeFile = (outputFilePath, data) => () =>
+
+  new Promise((resolve, reject) => {
 
     fs.writeFile(outputFilePath, data, 'utf8', fsWriteErr => {
 
@@ -42,6 +49,20 @@ const writeOutput = (path, data) => new Promise((resolve, reject) => {
     });
 
   });
+
+const writeOutput = (path, config) => data => new Promise((resolve, reject) => {
+
+  const { outputDirPath, outputFilePath } = getOutputPath(path, config);
+
+  makeDirs(outputDirPath)
+    .then(writeFile(outputFilePath, data))
+    .catch(err => {
+
+      reject(err);
+
+    });
+
+  resolve();
 
 });
 

@@ -10,10 +10,7 @@ const getData = filePath => new Promise((resolve, reject) => {
 
     }
 
-    resolve({
-      data,
-      filePath
-    });
+    resolve(data);
 
   });
 
