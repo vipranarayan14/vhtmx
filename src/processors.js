@@ -11,4 +11,4 @@ const processors = [
 
 ];
 
-module.exports = processors;
+module.exports = { processors };
