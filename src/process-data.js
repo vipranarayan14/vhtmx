@@ -1,7 +1,7 @@
-const { parseDOM } = require('./parse-dom');
-const { processDocument } = require('./process-document');
+import { parseDOM } from './parse-dom';
+import { processDocument } from './process-document';
 
-const processData = processors => data =>
+export const processData = processors => data =>
 
   new Promise((resolve, reject) => {
 
@@ -18,5 +18,3 @@ const processData = processors => data =>
     resolve(doc);
 
   });
-
-module.exports = { processData };

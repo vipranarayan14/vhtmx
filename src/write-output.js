@@ -1,69 +1,23 @@
-const fs = require('fs');
-const mkdirp = require('mkdirp');
+import { makeDirs, writeFile } from './utils';
+import { getOutputPath } from './get-output-path';
 
-const getOutputPath = (inputFilePath, config) => {
-
-  const outputFilePath = inputFilePath
-    .replace(config.srcRoot, config.distRoot)
-    .replace(config.srcExt, config.distExt);
-
-  const outputDirPath = outputFilePath.match(/(.+)\/(?:.(?!\/))+/)[1];
-
-  return {
-    outputDirPath,
-    outputFilePath
-  };
-
-};
-
-const makeDirs = outputDirPath => new Promise((resolve, reject) =>
-
-  mkdirp(outputDirPath, mkdirpErr => {
-
-    if (mkdirpErr) {
-
-      reject(mkdirpErr);
-
-    }
-
-    resolve();
-
-  })
-
-);
-
-const writeFile = (outputFilePath, data) => () =>
+export const writeOutput = (path, config) => data =>
 
   new Promise((resolve, reject) => {
 
-    fs.writeFile(outputFilePath, data, 'utf8', fsWriteErr => {
+    const {
+      outputDirPath,
+      outputFilePath
+    } = getOutputPath(path, config);
 
-      if (fsWriteErr) {
+    makeDirs(outputDirPath)
+      .then(writeFile(outputFilePath, data))
+      .catch(err => {
 
-        reject(fsWriteErr);
+        reject(err);
 
-      }
+      });
 
-      resolve(outputFilePath);
-
-    });
+    resolve();
 
   });
-
-const writeOutput = (path, config) => data => new Promise((resolve, reject) => {
-
-  const { outputDirPath, outputFilePath } = getOutputPath(path, config);
-
-  makeDirs(outputDirPath)
-    .then(writeFile(outputFilePath, data))
-    .catch(err => {
-
-      reject(err);
-
-    });
-
-  resolve();
-
-});
-
-module.exports = { writeOutput };

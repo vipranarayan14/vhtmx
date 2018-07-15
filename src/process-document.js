@@ -1,4 +1,4 @@
-const processDocument = (dom, processors) => {
+export const processDocument = (dom, processors) => {
 
   processors.forEach(processor => {
 
@@ -11,5 +11,3 @@ const processDocument = (dom, processors) => {
   return dom;
 
 };
-
-module.exports = { processDocument };

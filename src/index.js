@@ -1,9 +1,9 @@
-const { processFiles } = require('./process-files');
-const { makeConfig } = require('./make-config');
+import { defaultConfig } from './default-config';
 
-const { defaultConfig } = require('./default-config');
+import { makeConfig } from './make-config';
+import { processFiles } from './process-files';
 
-class Vhtmx {
+export class Vhtmx {
 
   constructor(userConfig = {}) {
 
@@ -30,5 +30,3 @@ class Vhtmx {
   }
 
 };
-
-module.exports = { Vhtmx };

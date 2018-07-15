@@ -1,6 +1,6 @@
-const glob = require('glob');
+import glob from 'glob';
 
-const getPaths = config => new Promise((resolve, reject) =>
+export const getPaths = config => new Promise((resolve, reject) =>
 
   glob(`${config.srcRoot}/**/*${config.srcExt}`, (err, filePaths) => {
 
@@ -15,5 +15,3 @@ const getPaths = config => new Promise((resolve, reject) =>
   })
 
 );
-
-module.exports = { getPaths };

@@ -1,5 +1,3 @@
 const { JSDOM } = require('jsdom');
 
-const parseDOM = data => new JSDOM(data);
-
-module.exports = { parseDOM };
+export const parseDOM = data => new JSDOM(data);

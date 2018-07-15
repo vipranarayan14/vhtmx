@@ -1,19 +1,9 @@
-const fs = require('fs');
+import { readFile } from './utils';
 
-const getData = filePath => new Promise((resolve, reject) => {
+export const getData = filePath => new Promise((resolve, reject) => {
 
-  fs.readFile(filePath, 'utf8', (err, data) => {
-
-    if (err) {
-
-      reject(err);
-
-    }
-
-    resolve(data);
-
-  });
+  readFile(filePath)
+    .then(data => resolve(data))
+    .catch(err => reject(err));
 
 });
-
-module.exports = { getData };
