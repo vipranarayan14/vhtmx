@@ -1,0 +1,1 @@
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});var _require=require('jsdom'),JSDOM=_require.JSDOM;var parseDOM=exports.parseDOM=function parseDOM(data){return new JSDOM(data)};

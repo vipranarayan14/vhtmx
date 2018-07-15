@@ -1,0 +1,1 @@
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});exports.getData=undefined;var _utils=require('./utils');var getData=exports.getData=function getData(filePath){return new Promise(function(resolve,reject){(0,_utils.readFile)(filePath).then(function(data){return resolve(data)}).catch(function(err){return reject(err)})})};

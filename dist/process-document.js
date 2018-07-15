@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});var processDocument=exports.processDocument=function processDocument(dom,processors){processors.forEach(function(processor){dom.window.document.querySelectorAll(processor.query).forEach(function(element){return processor.process(element)})});return dom};

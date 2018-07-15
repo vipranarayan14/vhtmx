@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});var makeConfig=exports.makeConfig=function makeConfig(defaultConfig,userConfig){return Object.assign({},defaultConfig,userConfig)};
