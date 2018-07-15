@@ -2,24 +2,32 @@
   "name": "vhtmx",
   "version": "0.0.0",
   "description": "Custom markup precompiler",
-  "main": "src/index.js",
-  "scripts": {
-    "eslint": "eslint ./src/**/*.js",
-    "test": "node ./sample/test.js"
-  },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "eslint": "^5.1.0"
+  "keywords": [
+    "html",
+    "custom",
+    "markup"
+  ],
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rimraf ./dist/* && babel src -d dist --minified",
+    "eslint": "eslint ./src/**/*.js",
+    "test": "node ./sample/test.js",
+    "precommit": "npm run eslint",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "glob": "^7.1.2",
     "jsdom": "^11.11.0",
     "mkdirp": "^0.5.1"
   },
-  "keywords": [
-    "html",
-    "custom",
-    "markup"
-  ]
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.1.0",
+    "husky": "^0.14.3",
+    "rimraf": "^2.6.2"
+  }
 }
