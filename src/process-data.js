@@ -1,3 +1,4 @@
+import { getDocAsString } from './get-doc-as-string';
 import { parseDOM } from './parse-dom';
 import { processDocument } from './process-document';
 
@@ -7,7 +8,7 @@ export const processData = processors => data =>
 
     const dom = parseDOM(data);
 
-    const doc = processDocument(dom, processors).window.document.documentElement;
+    const doc = processDocument(dom, processors).window.document;
 
     if (!doc) {
 
@@ -15,9 +16,7 @@ export const processData = processors => data =>
 
     }
 
-    const doctype = '<!DOCTYPE html>';
-
-    const docAsString = doctype + doc.outerHTML;
+    const docAsString = getDocAsString(doc, data);
 
     resolve(docAsString);
 
