@@ -7,7 +7,7 @@ export const processData = processors => data =>
 
     const dom = parseDOM(data);
 
-    const doc = processDocument(dom, processors).window.document.body.innerHTML;
+    const doc = processDocument(dom, processors).window.document.documentElement;
 
     if (!doc) {
 
@@ -15,6 +15,10 @@ export const processData = processors => data =>
 
     }
 
-    resolve(doc);
+    const doctype = '<!DOCTYPE html>';
+
+    const docAsString = doctype + doc.outerHTML;
+
+    resolve(docAsString);
 
   });
