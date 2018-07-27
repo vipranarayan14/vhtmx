@@ -1,4 +1,9 @@
-export const makeConfig = (defaultConfig, userConfig) => Object.assign({},
-  defaultConfig,
-  userConfig
-);
+export const makeConfig = (defaultConfig, userConfig) =>
+
+  Object.assign({},
+
+    defaultConfig,
+
+    userConfig
+
+  );

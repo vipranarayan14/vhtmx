@@ -11,8 +11,11 @@ export const processFiles = (config, processors) =>
     filePaths.forEach(filePath => {
 
       getData(filePath)
+
         .then(processData(processors))
+
         .then(writeOutput(filePath, config))
+
         .catch(err => {
 
           logError(err);

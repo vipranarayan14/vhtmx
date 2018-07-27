@@ -11,7 +11,9 @@ export const writeOutput = (path, config) => data =>
     } = getOutputPath(path, config);
 
     makeDirs(outputDirPath)
+
       .then(writeFile(outputFilePath, data))
+
       .catch(err => {
 
         reject(err);
