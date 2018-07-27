@@ -22,34 +22,38 @@ export const makeDirs = outputDirPath =>
 
   );
 
-export const readFile = filePath => new Promise((resolve, reject) =>
+export const readFile = filePath =>
 
-  _readFile(filePath, 'utf8', (err, data) => {
+  new Promise((resolve, reject) =>
 
-    if (err) {
+    _readFile(filePath, 'utf8', (err, data) => {
 
-      return reject(err);
+      if (err) {
 
-    }
+        return reject(err);
 
-    return resolve(data);
+      }
 
-  })
+      return resolve(data);
 
-);
+    })
 
-export const writeFile = (filePath, data) => new Promise((resolve, reject) =>
+  );
 
-  _writeFile(filePath, data, 'utf8', err => {
+export const writeFile = (filePath, data) => () =>
 
-    if (err) {
+  new Promise((resolve, reject) =>
 
-      reject(err);
+    _writeFile(filePath, data, 'utf8', err => {
 
-    }
+      if (err) {
 
-    resolve();
+        reject(err);
 
-  })
+      }
 
-);
+      resolve();
+
+    })
+
+  );
