@@ -11,7 +11,7 @@ export class Vhtmx {
 
   }
 
-  use(processors) {
+  use(processors = []) {
 
     this.processors = processors;
 
